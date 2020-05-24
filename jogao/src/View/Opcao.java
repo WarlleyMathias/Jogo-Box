@@ -1,17 +1,12 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import Controle.OpcaoControle;
-
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JProgressBar;
 import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -43,6 +38,7 @@ public class Opcao extends JFrame {
 	 * Create the frame.
 	 */
 	public Opcao() {
+		
 		controle = new OpcaoControle(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +68,7 @@ public class Opcao extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\Warlley\\Desktop\\opcao box - Copia (2).jpg"));
+		label.setIcon(new ImageIcon(Opcao.class.getResource("/View/imagens/Opcao.jpg")));
 		label.setBounds(0, 0, 444, 271);
 		contentPane.add(label);
 	}

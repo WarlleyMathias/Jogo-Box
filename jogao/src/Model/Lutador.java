@@ -6,20 +6,20 @@ public class Lutador {
 	private String pais;
 	private int idade;
 	private int forca;
-	private int peso;
+	private int resistencia;
 	private int tecnica;
 	private int rank;
 	private int id;
 	
-	public Lutador(int id, int rank, String nome, String pais, int idade, int forca, int peso, int tecnica) {
-		this.rank    = rank;
-		this.id      = id;
-		this.forca   = forca;
-		this.idade   = idade;
-		this.nome    = nome;
-		this.pais    = pais;
-		this.peso    = peso;
-		this.tecnica = tecnica;
+	public Lutador(int id, int rank, String nome, String pais, int idade, int forca, int resistencia, int tecnica) {
+		this.rank           = rank;
+		this.id             = id;
+		this.forca          = forca;
+		this.idade          = idade;
+		this.nome           = nome;
+		this.pais           = pais;
+		this.resistencia    = resistencia;
+		this.tecnica        = tecnica;
 	}
 
 	public String getNome() {
@@ -54,12 +54,12 @@ public class Lutador {
 		this.forca = forca;
 	}
 
-	public int getPeso() {
-		return peso;
+	public int getResistencia() {
+		return resistencia;
 	}
 
-	public void setPeso(int peso) {
-		this.peso = peso;
+	public void setResistencia(int resistencia) {
+		this.resistencia = resistencia;
 	}
 
 	public int getTecnica() {

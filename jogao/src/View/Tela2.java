@@ -1,14 +1,11 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import Controle.Tela2Control;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -20,7 +17,6 @@ public class Tela2 extends JFrame {
 	private final Tela2Control controle;
 	private JPanel contentPane;
 	
-
 	/**
 	 * Launch the application.
 	 */
@@ -56,8 +52,6 @@ public class Tela2 extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controle.abrirNJ();
-				controle.tela2Close();
-				
 			}
 		});
 		btnNewButton.setBounds(172, 114, 89, 23);
@@ -70,17 +64,14 @@ public class Tela2 extends JFrame {
 		JButton btnVoltar = new JButton("voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				controle.abrirTela();
-				controle.tela2Close();
-				
 			}
 		});
 		btnVoltar.setBounds(172, 182, 89, 23);
 		contentPane.add(btnVoltar);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Warlley\\Desktop\\opcao box - Copia.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(Tela2.class.getResource("/View/imagens/Tela.jpg")));
 		lblNewLabel.setBounds(0, 0, 434, 261);
 		contentPane.add(lblNewLabel);
 	}

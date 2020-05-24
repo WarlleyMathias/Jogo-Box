@@ -10,16 +10,18 @@ public class Tela2Control {
 	public Tela2Control(Tela2 view) {
 		this.view = view;
 	}
-
+	/**
+	 * Função que abre a janela Tela, e fecha a janela Tela2
+	 */
 	public void abrirTela() {
 		Tela.main(null);
-	}
-	
-	public void tela2Close() {
 		view.dispose();
 	}
-	
+	/**
+	 * Função que abre a janela NovoJogo, e fecha a janela Tela2
+	 */
 	public void abrirNJ() {
 		NovoJogo.main(null);
+		view.dispose();
 	}
 }

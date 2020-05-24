@@ -1,6 +1,4 @@
 package View;
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,21 +6,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controle.FaseControle;
-import Controle.TelaControl;
-import Model.Lutador;
-import Model.DAO.LutadorDAO;
 
+import Model.Data;
+import Model.Lutador;
+import Model.DAO.ContadorDAO;
+import Model.DAO.DataDAO;
+import Model.DAO.LutadorDAO;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JMenuItem;
-import javax.swing.JTree;
-import javax.swing.JLayeredPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTabbedPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -33,7 +28,6 @@ public class Fase1 extends JFrame {
 
 	private final FaseControle controle;
 	private JPanel contentPane;
-
 	
 	/**
 	 * Launch the application.
@@ -57,14 +51,14 @@ public class Fase1 extends JFrame {
 	 */
 	public Fase1() {
 		
-		controle = new FaseControle(this);
-		LutadorDAO lutadorDAO = new LutadorDAO();
-		Lutador lutador = lutadorDAO.getLutador();
-		Lutador Oponente = lutadorDAO.getOponente();
-		
-		
-		
-		
+		controle                = new FaseControle(this);
+		LutadorDAO lutadorDAO   = new LutadorDAO();
+		DataDAO dataDAO         = new DataDAO();
+		Lutador lutador         = lutadorDAO.getLutador();
+		Lutador Oponente        = lutadorDAO.getOponente();
+		Data data               = dataDAO.getData();
+		ContadorDAO contadorDAO = new ContadorDAO();
+		contadorDAO.getContador3().setA(Oponente.getId());
 		
 		this.setEnabled(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -74,7 +68,6 @@ public class Fase1 extends JFrame {
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setContentPane(contentPane);
 		this.contentPane.setLayout(null);
-		
 		
 		JButton proximaLuta = new JButton("proxima luta");
 		
@@ -90,7 +83,6 @@ public class Fase1 extends JFrame {
 		btnVoltar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controle.patrocinioClose(janelaPatrocinio);
-				
 			}
 		});
 		btnVoltar_1.setBounds(10, 11, 89, 23);
@@ -108,12 +100,11 @@ public class Fase1 extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controle.treinoClose(janelaTreino);
-				
 			}
 		});
-		btnVoltar.setBounds(108, 105, 89, 23);
+		btnVoltar.setBounds(10, 178, 89, 23);
 		janelaTreino.getContentPane().add(btnVoltar);
-		
+			
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 434, 22);
 		contentPane.add(menuBar);
@@ -135,6 +126,7 @@ public class Fase1 extends JFrame {
 			}
 		});
 		menuBar.add(btnPatrocinio);
+		
 		JInternalFrame preLuta = new JInternalFrame("New JInternalFrame");
 		preLuta.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.BLACK));
 		preLuta.setBounds(188, 22, 246, 239);
@@ -155,7 +147,6 @@ public class Fase1 extends JFrame {
 				controle.destravarBotao(btnPatrocinio);
 				controle.destravarBotao2(btnTreino);
 				controle.proxluta(proximaLuta);
-				
 			}
 		});
 		btnVoltar_2.setBounds(10, 11, 89, 23);
@@ -165,60 +156,47 @@ public class Fase1 extends JFrame {
 		lblEstilo.setBounds(10, 118, 90, 14);
 		preLuta.getContentPane().add(lblEstilo);
 		
-		JButton btnLuta = new JButton("Luta!");
-		btnLuta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controle.abrirFase2();
-				
-			}
-		});
-		btnLuta.setBounds(10, 175, 89, 35);
-		preLuta.getContentPane().add(btnLuta);
-		
 		JLabel label_1 = new JLabel("");
 		label_1.setBounds(131, 11, 89, 96);
-		label_1.setIcon(new ImageIcon("C:\\Users\\Warlley\\Desktop\\adversario - Copia.png"));
+		label_1.setIcon(new ImageIcon(Fase1.class.getResource("/View/imagens/Oponente1.png")));
 		preLuta.getContentPane().add(label_1);
 		
 		JLabel lblNome2 = new JLabel("Nome: ");
-		lblNome2.setBounds(141, 118, 79, 14);
+		lblNome2.setBounds(141, 118, 101, 14);
 		lblNome2.setText(lblNome2.getText() + Oponente.getNome());
 		preLuta.getContentPane().add(lblNome2);
 		
 		JLabel lblPais2 = new JLabel("Pa\u00EDs: ");
-		lblPais2.setBounds(141, 134, 79, 14);
+		lblPais2.setBounds(141, 134, 101, 14);
 		lblPais2.setText(lblPais2.getText() + Oponente.getPais());
 		preLuta.getContentPane().add(lblPais2);
 		
 		JLabel lblidade2 = new JLabel("Idade: ");
-		lblidade2.setBounds(141, 149, 79, 14);
+		lblidade2.setBounds(141, 149, 101, 14);
 		lblidade2.setText(lblidade2.getText() + Oponente.getIdade());
 		preLuta.getContentPane().add(lblidade2);
 		
 		JLabel lblForca2 = new JLabel("For\u00E7a: ");
-		lblForca2.setBounds(141, 163, 79, 14);
+		lblForca2.setBounds(141, 163, 101, 14);
 		lblForca2.setText(lblForca2.getText() + Oponente.getForca());
 		preLuta.getContentPane().add(lblForca2);
 		
-		JLabel lblPeso2 = new JLabel("Peso: ");
-		lblPeso2.setBounds(141, 179, 79, 14);
-		lblPeso2.setText(lblPeso2.getText() + Oponente.getPeso());
-		preLuta.getContentPane().add(lblPeso2);
+		JLabel lblResistencia2 = new JLabel("Resistencia: ");
+		lblResistencia2.setBounds(141, 179, 101, 14);
+		lblResistencia2.setText(lblResistencia2.getText() + Oponente.getResistencia());
+		preLuta.getContentPane().add(lblResistencia2);
 		
 		JLabel lblTecnica2 = new JLabel("Tecnica: ");
 		lblTecnica2.setBounds(141, 194, 79, 14);
 		lblTecnica2.setText(lblTecnica2.getText() + Oponente.getTecnica());
 		preLuta.getContentPane().add(lblTecnica2);
 		
-
 		proximaLuta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {		
 				controle.preLuta(preLuta);
 				controle.travarBotao(btnPatrocinio);
 				controle.travarBotao2(btnTreino);
 				controle.proxluta2(proximaLuta);
-				
 			}
 		});
 		proximaLuta.setBounds(203, 197, 154, 53);
@@ -244,10 +222,10 @@ public class Fase1 extends JFrame {
 		lblForca.setText(lblForca.getText()+lutador.getForca());
 		contentPane.add(lblForca);
 		
-		JLabel lblpeso = new JLabel("Peso: ");
-		lblpeso.setBounds(250, 160, 107, 14);
-		lblpeso.setText(lblpeso.getText()+lutador.getPeso());
-		contentPane.add(lblpeso);
+		JLabel lblResistencia = new JLabel("Resistencia: ");
+		lblResistencia.setBounds(250, 160, 107, 14);
+		lblResistencia.setText(lblResistencia.getText()+lutador.getResistencia());
+		contentPane.add(lblResistencia);
 		
 		JLabel lblTecnica = new JLabel("Tecnica: ");
 		lblTecnica.setBounds(250, 180, 107, 14);
@@ -255,8 +233,50 @@ public class Fase1 extends JFrame {
 		contentPane.add(lblTecnica);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\Warlley\\Desktop\\boxeado.png"));
+		label.setIcon(new ImageIcon(Fase1.class.getResource("/View/imagens/Boxeador.png")));
 		label.setBounds(10, 33, 154, 201);
 		contentPane.add(label);
+		
+		JLabel lblNewLabel = new JLabel(data.getDd()+"/"+data.getMm()+"/"+data.getAa());
+		lblNewLabel.setBounds(316, 22, 118, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setBounds(10, 90, 163, 14);
+		janelaTreino.getContentPane().add(label_2);
+		
+		JButton btnTreinoDeFora = new JButton("Treino de For\u00E7a");
+		JButton btnTreinarTecnica = new JButton("Treinar Tecnica");
+		btnTreinarTecnica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			controle.treinarTecnica(label_2, btnTreinoDeFora, btnTreinarTecnica);
+			}
+		});
+		btnTreinarTecnica.setBounds(219, 11, 163, 44);
+		janelaTreino.getContentPane().add(btnTreinarTecnica);
+		
+		//O bntTreinoDeForca, está instanciado acima! 
+		btnTreinoDeFora.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controle.treinarForca(label_2, btnTreinoDeFora, btnTreinarTecnica);
+			}
+		});
+		btnTreinoDeFora.setBounds(10, 11, 163, 44);
+		janelaTreino.getContentPane().add(btnTreinoDeFora);
+	
+		JButton btnLuta = new JButton("Luta!");
+		btnLuta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controle.abrirFase2(lblNewLabel);
+				controle.getEstilo(comboBox);
+			}
+		});
+		btnLuta.setBounds(10, 175, 89, 35);
+		preLuta.getContentPane().add(btnLuta);
+		
+		controle.faltam(contadorDAO, label_2);
+		controle.contador2(lutador, contadorDAO, lblTecnica, btnTreinoDeFora, btnTreinarTecnica);
+		controle.contador1(lutador, contadorDAO, lblForca, btnTreinoDeFora, btnTreinarTecnica);		
+		controle.enabledBtn(contadorDAO, btnTreinarTecnica, btnTreinoDeFora);
 	}
 }

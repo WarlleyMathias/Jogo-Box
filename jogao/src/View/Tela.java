@@ -12,13 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
-import java.net.URL;
 import java.awt.event.ActionEvent;
 
 public class Tela extends JFrame {
 	
-	
-
 	private final TelaControl controle;
 	private JPanel contentPane;
 	
@@ -44,11 +41,11 @@ public class Tela extends JFrame {
 	 * Create the frame.
 	 */
 
-	public Tela()	
-	{
-		setResizable(false);
+	public Tela(){
 		
+		controle = new TelaControl(this);
 		
+		setResizable(false);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(450, 300);
 		setLocationRelativeTo(null);
@@ -77,23 +74,20 @@ public class Tela extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnJogar = new JButton("jogar");
-		
 		btnJogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controle.abrirTela2();
 				controle.fecharTela();
 			}
 		});
-		
 		btnJogar.setBounds(171, 124, 89, 23);
 		contentPane.add(btnJogar);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Warlley\\Desktop\\opcao box - Copia.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(Tela.class.getResource("/View/imagens/Tela.jpg")));
 		lblNewLabel.setBounds(0, 0, 444, 271);
 		contentPane.add(lblNewLabel);
 		
-		controle = new TelaControl(this);
 	}
 	
 }

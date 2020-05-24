@@ -1,15 +1,11 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import Controle.NJControle;
 import Model.DAO.Banco;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
@@ -48,7 +44,7 @@ public class NovoJogo extends JFrame {
 	 */
 	public NovoJogo() {
 		
-		
+		controle = new NJControle(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(450, 300);
@@ -59,36 +55,35 @@ public class NovoJogo extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\Warlley\\Desktop\\Boxeado.png"));
 		label.setBounds(268, 11, 156, 205);
+		label.setIcon(new ImageIcon(NovoJogo.class.getResource("/View/imagens/Boxeador.png")));
 		contentPane.add(label);
 		
 		JLabel lblIdade = new JLabel("Idade:");
-		lblIdade.setBounds(10, 77, 46, 14);
+		lblIdade.setBounds(10, 77, 68, 14);
 		contentPane.add(lblIdade);
 		
 		JSpinner spinner = new JSpinner();
+		spinner.setBounds(88, 74, 46, 20);
 		spinner.setModel(new SpinnerNumberModel(18, 18, 70, 1));
-		spinner.setBounds(58, 74, 46, 20);
 		contentPane.add(spinner);
 
-		
 		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setBounds(88, 99, 46, 20);
 		spinner_1.setModel(new SpinnerNumberModel(20, 20, 30, 1));
-		spinner_1.setBounds(58, 99, 46, 20);
 		contentPane.add(spinner_1);
 		
 		JSpinner spinner_2 = new JSpinner();
+		spinner_2.setBounds(88, 124, 46, 20);
 		spinner_2.setModel(new SpinnerNumberModel(40, 40, 150, 1));
-		spinner_2.setBounds(58, 124, 46, 20);
 		contentPane.add(spinner_2);
 		
-		JLabel lblPeso = new JLabel("Peso:");
-		lblPeso.setBounds(10, 127, 30, 14);
+		JLabel lblPeso = new JLabel("Resistencia:");
+		lblPeso.setBounds(10, 127, 71, 14);
 		contentPane.add(lblPeso);
 		
 		JLabel lblFora = new JLabel("For\u00E7a:");
-		lblFora.setBounds(10, 102, 46, 14);
+		lblFora.setBounds(10, 102, 68, 14);
 		contentPane.add(lblFora);
 		
 		JLabel lblNome = new JLabel("Nome:");
@@ -105,40 +100,30 @@ public class NovoJogo extends JFrame {
 		textNome.setColumns(10);
 		
 		JLabel lblTecnica = new JLabel("Tecnica:");
-		lblTecnica.setBounds(10, 155, 46, 14);
+		lblTecnica.setBounds(10, 152, 68, 14);
 		contentPane.add(lblTecnica);
 		
 		JSpinner spinner_3 = new JSpinner();
+		spinner_3.setBounds(88, 149, 46, 20);
 		spinner_3.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinner_3.setBounds(58, 152, 46, 20);
 		contentPane.add(spinner_3);
 		
 		JComboBox boxPais = new JComboBox();
-		boxPais.setModel(new DefaultComboBoxModel(new String[] {"Brasil", "EUA", "Argentina"}));
 		boxPais.setBounds(48, 36, 86, 22);
-		
+		boxPais.setModel(new DefaultComboBoxModel(new String[] {"Brasil", "EUA", "Argentina"}));
 		contentPane.add(boxPais);
 		
 		JButton btnJogar = new JButton("Jogar");
+		btnJogar.setBounds(335, 227, 89, 23);
 		btnJogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controle.abrirFase1(boxPais, spinner, spinner_1, spinner_2, spinner_3);
-				
-				
-				
 			}
 		});
-		btnJogar.setBounds(335, 227, 89, 23);
 		contentPane.add(btnJogar);
-		
-		
-		
-		
-		controle = new NJControle(this);	
+			
 		Banco.inicia();
 	}
-	
-
 	public JTextField getTextNome() {
 		return textNome;
 	}
